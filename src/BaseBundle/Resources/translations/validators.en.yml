@@ -1,0 +1,29 @@
+#translations/validators.en.yml
+
+# LABELS
+form.name.label: Name
+form.first_name.label: First Name
+form.mail.label: Email
+form.request.label: Request
+form.isActive.label: Active ?
+form.roles.label: Roles ?
+form.submit.label: Submit
+
+# Login
+form.username.label: Username
+form.password.label: Password
+form.remember_me.label: Remember me
+form.login.label: Login
+
+# ERRORS
+form.name.not_blank: The field Name can't be empty.
+form.name.minMessage: The field Name must have at less 7 chars.
+form.first_name.minMessage: The field First Name must have at less 7 chars.
+form.mail.invalid: This mail "{{ value }}" are not a valid email address.
+form.request.minMessage: The field Resuest must have 5 chars min and 200 max.
+form.request.customValid: The string "%string%" don't pass the CustomValid validation.
+
+form.username.not_blank: The field Username can't be blank.
+form.username.minMessage: The field Username must have at least chars.
+form.username.already_taken: The username is already used.
+form.mail.already_taken: The mail address is already used.

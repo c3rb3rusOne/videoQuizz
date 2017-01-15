@@ -1,0 +1,13 @@
+{# Etend le thème principal contenu dans app/Ressources/viewsbase0html.twig #}
+{% extends 'base.html.twig' %}
+
+{# Surdéfini le bloc title du thème principal #}
+{% block title %}Home Page{% endblock %}
+
+{# Remplace le contenu par défaut du bloc body de base.html.twig #}
+{% block body %}
+
+    homePage link : <a href="{{ path('base_homepage') }}">Home</a>
+
+{% endblock %}
+{# base_homepage -> nom de la route #}

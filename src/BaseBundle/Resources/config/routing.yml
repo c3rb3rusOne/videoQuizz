@@ -1,0 +1,19 @@
+base_homepage:
+    path:     /
+    defaults: { _controller: BaseBundle:HomePage:homePage } #HomePage = nom de la classe du controller, homePage = nom de l'action ds le controller (on ne riens pas compte des suffixe)
+
+base_myAccount:
+    path:     /myAccount
+    defaults: { _controller: BaseBundle:MyAccount:myAccount }
+
+base_register:
+    path:     /register
+    defaults: { _controller: BaseBundle:Register:Register }
+
+base_ajax_add_checkbox_superAdmin:
+    path:  /ajax
+    defaults: { _controller: BaseBundle:Ajax:add_checkbox_superAdmin }
+
+base_confirm_email:
+    path: /confirm/{token}
+    defaults: { _controller: BaseBundle:Register:Confirm }

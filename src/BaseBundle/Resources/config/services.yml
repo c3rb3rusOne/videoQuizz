@@ -1,0 +1,13 @@
+services:
+#    base.example:
+#        class: BaseBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    base.event.user_created:
+        class:     BaseBundle\Event\UserCreatedListener
+        arguments: ['@video_quizz.mailer'] # id du service
+        tags:
+            - { name: kernel.event_listener, event: base.event.user_created, method: process }
+
+    video_quizz.mailer:
+        class: BaseBundle\Service\Mailer
+        arguments: ['@mailer', '@templating']

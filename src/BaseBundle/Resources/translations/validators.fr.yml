@@ -1,0 +1,29 @@
+#translations/validators.fr.yml
+
+# LABELS
+form.name.label: Nom
+form.first_name.label: Prénom
+form.mail.label: Adresse mail
+form.request.label: Demande
+form.isActive.label: Actif ?
+form.roles.label: Roles ?
+form.submit.label: Envoyer
+
+# Login
+form.username.label: Nom d'utilisateur
+form.password.label: Mot de passe
+form.remember_me.label: Se souvenir de moi
+form.login.label: Connexion
+
+# ERRORS
+form.name.not_blank: Le champ Nom ne peut être laissé vide.
+form.name.minMessage: Le champ Nom doit comporter au moins 7 caractères.
+form.first_name.minMessage: Le champ Prénom doit comporter au moins 7 caractères.
+form.mail.invalid: L'email "{{ value }}" n'est pas une adresse mail valide.
+form.request.minMessage: Veuillez saisir une demande de 5 caractère min et 200 max.
+form.request.customValid: La chaine "%string%" n'a pas passé la validation CustomValid.
+
+form.username.not_blank: Le champ Identifiant ne peut être laissé vide.
+form.username.minMessage: Le champ Identifiant doit comporter au moins 2 caractères.
+form.username.already_taken: Le nom d'utilisateur est déja utilisé.
+form.mail.already_taken: L'adresse mail est déjà enregistrée.

@@ -1,0 +1,35 @@
+{# app/Resources/views/UserManagement/Register.html.twig, obligatoirement dans un dossier ou dans app/ressources/view #}
+
+{# Etendre le tme principal #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Registration!!{% endblock %}
+
+{% block body %}
+
+	{{ form(UserForm) }}
+
+{% endblock %}
+
+{% block javascripts %}
+
+	{{ parent() }}
+
+	<script type="text/javascript">
+
+	    function add_checkbox_superAdmin()
+	    {
+	    	var container = $('#user_form_roles');
+		    var inputs = container.find('input');
+
+		    $("#user_form_roles").append('<div class="checkbox"> <label class=""> <input id="user_form_roles_2" name="user_form[roles][]" value="ROLE_SUPER_ADMIN" type="checkbox"> ROLE_SUPER_ADMIN </label> </div>');
+		}
+		
+	    $(document).ready(function()
+	    {     
+	  		$('#user_form_roles_0').on('change', function(){ add_checkbox_superAdmin(); });
+		});
+    
+  </script>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+# src/BaseBundle/Resources/config/validation.yml
+BaseBundle\Entity\User:
+    constraints:
+        #http://symfony.com/doc/current/reference/constraints/UniqueEntity.html
+        #This required option is the field (or list of fields) on which this entity should be unique. For example, if you specified both the email and name field in a single UniqueEntity constraint, then it would enforce that the combination value is unique (e.g. two users could have the same email, as long as they don't have the same name also).
+        #If you need to require two fields to be individually unique (e.g. a unique email and a unique username), you use two UniqueEntity entries, each with a single field.
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [username]
+            message: form.username.already_taken
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: [mail]
+            message: form.mail.already_taken
+    properties:
+        username:
+            - NotBlank: { message: 'form.username.not_blank' } #- NotBlank: { message: "Le nom est obligatoire." } #- NotBlank: ~
+            - Length:
+                min: 8
+                minMessage: form.username.minMessage
+        mail:
+            - Email:
+                message: form.mail.invalid
+                #checkMX: true # checkdnsrr PHP function will be used to check the validity of the MX record of the host of the given email.
+        password:
+            - Length:
+                min: 8
+                minMessage: form.username.minMessage
+        #isActive:
+        #roles:
+
+BaseBundle\Entity\Contact:
+    properties:
+        name:
+            - NotBlank: { message: 'form.name.not_blank' } #- NotBlank: { message: "Le nom est obligatoire." } #- NotBlank: ~
+            - Length:
+                min: 7
+                minMessage: form.name.minMessage
+        first_name:
+            - NotBlank: ~
+            - Length:
+                min: 7
+                minMessage: form.first_name.minMessage
+        mail:
+            - Email:
+                message: form.mail.invalid
+                #checkMX: true # checkdnsrr PHP function will be used to check the validity of the MX record of the host of the given email.
+        request:
+            - NotBlank: ~
+            - Length:
+                min: 5
+                max: 200
+                minMessage: form.request.minMessage
+            # https://symfony.com/doc/current/cookbook/validation/custom_constraint.html
+            - BaseBundle\Validator\Constraints\CustomValid:
+                message: form.request.customValid

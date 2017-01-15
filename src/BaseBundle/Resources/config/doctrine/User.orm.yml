@@ -1,0 +1,30 @@
+# src/BaseBundle/Resources/config/doctrine/User.orm.yml
+BaseBundle\Entity\User:
+    type: entity
+    table: users
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        username:
+            type: string
+            length: 25
+            unique: true
+        mail:
+            type: string
+            length: 60
+            unique: true
+        password:
+            type: string
+            length: 100
+        isActive:
+            name: is_active
+            type: boolean
+        roles:
+            type: array #string # Pas de support natif des ENUM, array si choiceType, pas string
+            length: 20
+            nullable: true
+        emailConfirmationToken:
+            type: string
+            length: 43

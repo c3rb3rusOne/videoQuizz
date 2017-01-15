@@ -1,0 +1,26 @@
+{# app/Resources/views/form/fields.html.twig #}
+
+{# {% extends 'form_div_layout.html.twig' %} for use parent() instead copy the block content (like {%- block form_errors -%}) #}
+{# {% use 'form_div_layout.html.twig' with form_errors as base_form_errors %} {# ici car mélange méthode copie et parent() #}
+{% use 'bootstrap_3_layout.html.twig' with form_errors as base_form_errors %} {# ici car mélange méthode copie et parent() #}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+    <ul>
+        {%- for error in errors -%}
+            <li>{{ error.message ~ 'flebeleb' }}</li>
+        {%- endfor -%}
+    </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{# form_widget_simple.html.php custom for show help message #}
+<!-- com' ? -->
+
+{% block form_widget_simple %}
+    {{ parent() }}
+
+    {% if help is defined %}
+        <span class="help">{{ help }}</span>
+    {% endif %}
+{% endblock %}

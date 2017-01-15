@@ -1,24 +1,71 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
+  encoders:
+      BaseBundle\Entity\User:
+          algorithm: bcrypt
+  # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+  providers:
+      #in_memory:
+          #memory: ~
+      main_db_provider: # arbitrary name
+          # namespace/bundle\...entity; username = propriété qui permettra à l'utilisateur de se connecter.
+          # Si utilisation de l'authentification via l'email ou un username (au choix) -> implémentation d'un user provider.
+          entity:
+              class: BaseBundle:User
+              property: username
+  firewalls:
+      # disables authentication for assets and the profiler, adapt it according to your needs
+      dev:
+          pattern: ^/(_(profiler|wdt)|css|images|js)/
+          security: false
 
-    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
-    providers:
-        in_memory:
-            memory: ~
+      main_firewall:
+          #http_basic: ~
+          anonymous: ~ # autorise les anonymes. Si retiré il faut implémenter un firewall spécifique les autorisants pour le login (pb avec cette solution)
+          pattern: ^/ # Toutes les routes sont sécurisées, sauf celles spécifiées form_login:, logout: ...
+          # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+          # Connexion par formulaire, login_path and check_path can also be route names
+          form_login:
+              login_path: /login # login
+              check_path: /login # login_check ?
+              # Add fieldd names for the username and password fields, obligatoire si on utilise un formulaire de login généré par formBuilder
+              # car il est impossible d'avoir name=_username et password=_password
+              username_parameter: login_form[username] #_username
+              password_parameter: login_form[password] #_password
+              #csrf_parameter: login_form[_csrf_token] #_csrf_token
+              #csrf_token_id: a_private_string
+              #csrf_token_generator: security.csrf.token_manager # Protection du formulaire de login contre les attaques csrf
+              #https://symfony.com/doc/current/cookbook/security/csrf_in_login_form.html
+          # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+          # https://symfony.com/doc/current/reference/configuration/security.html#reference-security-firewall-form-login
+          provider: main_db_provider
+          # Déconnexion, gérée automatiquement dès que cette ligne est présente (ajouter route /logout ds routing)
+          logout:
+              path: /logout
+              target: /
+          remember_me:
+              secret: '%secret%' #The value used to encrypt the cookie's content. It's common to use the secret value defined in the app/config/parameters.yml file.
+              lifetime: 604800 # 1 week in seconds
+              remember_me_parameter: login_form[remember_me] #_remember_me
+              path: / #The path where the cookie associated with this feature is used. By default the cookie will be applied to the entire website but you can restrict to a specific section (e.g. /forum, /admin).
+              # by default, the feature is enabled by checking a checkbox in the login form (see below), uncomment the following line to always enable it.
+              #always_remember_me: true
+              #https://symfony.com/doc/current/cookbook/security/remember_me.html
 
-    firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
 
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
+  #Autoriser les utilisateurs users (et admin, voir hiérarchie) sur toutes les pages et anonyme uniquement sur login
+  access_control:
+    # L'ordre compte: d'abord les autorisations
+      - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/confirm, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/myAccount, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+      - { path: ^/, roles: ROLE_USER } # Sécurisation de toutes les routes sauf les précédentes
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+  role_hierarchy:
+      ROLE_ADMIN: ROLE_USER
+      ROLE_USER: ROLE_ANONYMOUSLY
 
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+# pattern ^/ = tout
+# ^ means that only URLs beginning with the pattern are matched
