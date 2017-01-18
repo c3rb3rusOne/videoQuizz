@@ -1,0 +1,26 @@
+BaseBundle\Entity\Question:
+    type: entity
+    table: null
+    #repositoryClass: BaseBundle\Repository\QuestionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+            nullable: false
+        media:
+            type: string
+            length: 255
+            nullable: false
+    manyToOne:
+        theme:
+          targetEntity: Theme
+          joinColumn:
+            name: theme
+            referencedColumnName: id
+    lifecycleCallbacks: {  }

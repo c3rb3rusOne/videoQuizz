@@ -1,0 +1,23 @@
+BaseBundle\Entity\Answer:
+    type: entity
+    table: Answer
+    #repositoryClass: BaseBundle\Repository\QuestionRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        answer:
+            type: string
+            length: 255
+    # ManyToOne -> une réponse ne peut correspondre qu'à une question (à revoir si plusieurs extraits du même film)
+    # ou plusieur média
+    manyToOne:
+        question:
+          targetEntity: Question
+          joinColumn:
+            name: question # nom du champ qui sera créer
+            referencedColumnName: id
+    lifecycleCallbacks: {  }

@@ -1,0 +1,35 @@
+BaseBundle\Entity\Session:
+    type: entity
+    table: null
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+    manyToMany:
+      questions: # ?
+          targetEntity: Question
+          joinTable:
+            name: Session_Question
+            joinColumns:
+              session_id:
+                referencedColumnName: id
+            inverseJoinColumns:
+              question_id:
+                referencedColumnName: id
+      participants: # ?
+          targetEntity: User
+          joinTable:
+            name: Enrolment # nom de la table de jointure
+            joinColumns:
+              session_id: # nom dans la table de jointure
+                referencedColumnName: id
+            inverseJoinColumns:
+              user_id: # nom dans la table de jointure
+                referencedColumnName: id
+    lifecycleCallbacks: {  }

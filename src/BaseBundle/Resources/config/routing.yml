@@ -17,3 +17,11 @@ base_ajax_add_checkbox_superAdmin:
 base_confirm_email:
     path: /confirm/{token}
     defaults: { _controller: BaseBundle:Register:Confirm }
+
+base_contact:
+    path:      /contact
+    defaults:  { _controller: BaseBundle:Contact:contact }
+
+base_ajax_contact_subjects:
+    path:  /ajaxContactSubjects
+    defaults: { _controller: BaseBundle:Ajax:get_subjects }

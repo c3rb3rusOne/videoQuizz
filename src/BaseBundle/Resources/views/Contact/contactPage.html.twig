@@ -1,0 +1,69 @@
+{# app/Resources/views/default/new.html.php #}
+
+{# Etendre le thème principal #}
+{% extends 'base.html.twig' %}
+	{# Applique le thème définis par les fichiers contenus dans vendor\symfony\symfony\src\Symfony\Bundle\FrameworkBundle\Resources\views\form #}
+	{# {% form_theme contactForm 'form/fields.html.twig' %} #}
+
+{% block title %}Contact{% endblock %}	
+
+{% block body %} {# Remplace le contenu par défaut du bloc body de base.html.twig #}
+	
+	{# a revoir pr twig Applique le thème définis par les fichiers contenus dans vendor\symfony\symfony\src\Symfony\Bundle\FrameworkBundle\Resources\views\form #}
+
+	{# bootstrap pas nécéssaire puisque déjà définit globalement ds config.yml #}
+	{% form_theme contactForm with ['bootstrap_3_layout.html.twig','form/fields.html.twig'] %} 
+
+	{# {% form_theme contactForm 'form/fields.html.twig' %} Interfère avec bootstrap car étendu de 'form_div_layout.html.twig et non de bootstrap_3_layout.html.twig #}
+	{# {% form_theme contactForm 'bootstrap_3_layout.html.twig' %} #} {# Pour n'utiliser le thème que sur ce formulaire, sinon app/config->twig: #}
+
+	<div class="container">
+		<div class="row">
+    		<div class="col-md-4 col-md-offset-3">
+				{# renders all fields *and* the form start and end tags #}
+				{{ form(contactForm) }}
+			</div>
+		</div> 
+	</div>
+
+	{# renders all fields #}
+	{#{{ form_start(contactForm) }}
+		{{ form_widget(contactForm) }}
+	{{ form_end(contactForm) }}#}
+
+	{# renders field by field, obsolète ?#}
+	{# {{ form_widget(contactForm.nom, {'help': 'efsegfeg'}) }} {# -> Pr avoir le help message... #}
+
+{% endblock %}
+
+{% block javascripts %}
+
+	{{ parent() }}
+
+	<script type="text/javascript">
+
+        var $subject = $('#contact_form_subject');
+        // When subject gets selected ...
+        $subject.change(function() {
+            // ... retrieve the corresponding form.
+            var $form = $(this).closest('form');
+            // Simulate form data, but only include the selected subject value.
+            var data = {};
+            data[$subject.attr('name')] = $subject.val();
+            // Submit data via AJAX to the form's action path.
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    // Replace current position field ...
+                    $('#contact_form_sousMotif').replaceWith(
+                        $(html).find('#contact_form_sousMotif')
+                    );
+                }
+            });
+        });
+    
+	</script>
+
+{% endblock %}
