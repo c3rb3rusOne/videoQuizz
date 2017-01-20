@@ -6,8 +6,7 @@ namespace BaseBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use BaseBundle\Entity\User;
-use BaseBundle\Forms\Login\loginForm;
+use BaseBundle\Form\Login\loginForm;
 
 class SecurityController extends Controller
 {

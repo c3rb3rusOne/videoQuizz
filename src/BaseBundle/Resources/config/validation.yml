@@ -52,3 +52,13 @@ BaseBundle\Entity\Contact:
             # https://symfony.com/doc/current/cookbook/validation/custom_constraint.html
             - BaseBundle\Validator\Constraints\CustomValid:
                 message: form.request.customValid
+
+BaseBundle\Entity\Question:
+    properties:
+        title:
+            - NotBlank: { message: 'form.name.not_blank' } #- NotBlank: { message: "Le nom est obligatoire." } #- NotBlank: ~
+            - Length:
+                min: 7
+                minMessage: form.name.minMessage
+        answers:
+            - NotBlank: { message: 'form.name.not_blank' }

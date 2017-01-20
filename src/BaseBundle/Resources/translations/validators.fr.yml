@@ -8,6 +8,10 @@ form.request.label: Demande
 form.isActive.label: Actif ?
 form.roles.label: Roles ?
 form.submit.label: Envoyer
+form.reason.label: Motif
+form.secondReason.label: Sous motif
+form.choiceOther.label: Autre
+form.choiceOther2.label: Autre 2
 
 # Login
 form.username.label: Nom d'utilisateur

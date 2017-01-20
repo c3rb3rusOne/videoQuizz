@@ -5,7 +5,7 @@ namespace BaseBundle\Controller;
 
 use BaseBundle\Entity\User;
 use BaseBundle\Event\UserCreatedEvent;
-use BaseBundle\Forms\UserForm;
+use BaseBundle\Form\UserForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 // For method 2
