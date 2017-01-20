@@ -4,7 +4,7 @@
 /* Template du champs à définir (si besoin sinon celui de TextArea sera utilisé)
 {# app/Resources/views/form/fields.html.twig #} -> {% block demande_widget %} XXX {% endblock %} */
 
-namespace BaseBundle\Forms\Type;
+namespace BaseBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,8 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 // Pour surdéfinir buildView
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-
-
 
 class DemandeType extends AbstractType
 {

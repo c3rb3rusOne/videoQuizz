@@ -4,7 +4,7 @@
 namespace BaseBundle\Controller;
 
 use BaseBundle\Entity\Contact;
-use BaseBundle\Forms\Contact\contactForm;
+use BaseBundle\Form\Contact\contactForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -60,16 +60,14 @@ class ContactController extends Controller
         // if subject charger les sousMotif
         if (NULL != $contact->getSubject())
         {
-            $choices = [];
+            $choices = null;
 
             $Em = $this->getDoctrine()->getManager();
             $conn = $Em->getConnection();
 
             $sql = 'SELECT * FROM contact';
             $stmt = $conn->prepare($sql);
-            $stmt->execute();
-
-            var_dump($stmt->fetchAll());
+            $choices = $stmt->execute();
         }
 
 

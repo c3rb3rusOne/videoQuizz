@@ -23,5 +23,10 @@ class Theme
     {
         return $this->title;
     }
+
+    public function __toString()
+    {
+        return (string) $this->title;
+    }
 }
 

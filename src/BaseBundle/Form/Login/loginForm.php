@@ -1,7 +1,7 @@
 <?php
 
 // src/BaseBundle/Form/Contact/Login.php
-namespace BaseBundle\Forms\Login;
+namespace BaseBundle\Form\Login;
 
 // G:\Dropbox\ESPACE_TRAVAIL\Symfony_3\Cerberus\vendor\symfony\symfony\src\Symfony\Component\Form\Extension\Core\Type
 use Symfony\Component\Form\AbstractType;

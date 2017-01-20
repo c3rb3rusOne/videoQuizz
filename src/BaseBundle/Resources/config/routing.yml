@@ -1,3 +1,15 @@
+base_session:
+    resource: "@BaseBundle/Resources/config/routing/session.yml"
+    prefix:   /session
+
+base_question:
+        resource: "@BaseBundle/Resources/config/routing/question.yml"
+        prefix:   /question
+
+base_theme:
+        resource: "@BaseBundle/Resources/config/routing/theme.yml"
+        prefix:   /theme
+
 base_homepage:
     path:     /
     defaults: { _controller: BaseBundle:HomePage:homePage } #HomePage = nom de la classe du controller, homePage = nom de l'action ds le controller (on ne riens pas compte des suffixe)

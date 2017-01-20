@@ -8,6 +8,7 @@ class Question
     private $title;
     private $media;
     private $theme;
+    private $answers;
 
     public function getId()
     {
@@ -48,6 +49,23 @@ class Question
     public function getTheme()
     {
         return $this->theme;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->title;
+    }
+
+    public function setAnswers($answers)
+    {
+        $this->answers = $answers;
+
+        return $this;
+    }
+
+    public function getAnswers()
+    {
+        return $this->answers;
     }
 }
 

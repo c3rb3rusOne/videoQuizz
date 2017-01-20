@@ -1,7 +1,7 @@
 <?php
 
 // src/BaseBundle/Form/Contact/UserForm.php
-namespace BaseBundle\Forms;
+namespace BaseBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
